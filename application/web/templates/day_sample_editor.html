@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Add/Edit day sample</h1>
+<form action="" method="post" name="edit">
+    <table>
+        <tr>id<td></td><td>{{form.id}}</td></tr>
+        <tr>date<td></td><td>{{form.date}}</td></tr>
+    </table>
+    <input type="submit" value="Save">
+</form>
+{% endblock %}
