@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Day samples</h1>
+<a href="{{add_day_sample_url}}">Add day sample</a>
+<table>
+    {% for day_sample in day_samples %}
+    <tr><td>day_sample.id</td><td>day_sample.date</td><td><a href="">Edit</a></td></tr>
+    {% endfor %}
+</table>
+{% endblock %}
