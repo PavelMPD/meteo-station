@@ -2,7 +2,9 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Метеопост</title>
+    <title>{% block title %}Метеопост{% endblock %}</title>
+    {% block css %}
+    {% endblock %}
 </head>
 <body>
     <p>
@@ -11,5 +13,7 @@
     {% endfor %}
     </p>
     {% block content %}{% endblock %}
+    <script src="{{ url_for('static', filename='jquery-2.1.1.min.js') }}"></script>
+    {% block js %}{% endblock %}
 </body>
 </html>

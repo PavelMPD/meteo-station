@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    <h1>Add/Edit sample</h1>
+    <div><input id="save-button" type="button" value="Save" /></div>
+</div>
+<form id="sample-form" method="post">
+    <div>
+        <input type="hidden" name="sample_id" value={{sample.id}}>
+        <div class="editor-label">Air temperature</div><div class="editor-field"><input type="number" name="air_temperature" value={{sample.air_temperature}}></div>
+        <div class="editor-label">Water temperature</div><div class="editor-field"><input type="number" name="water_temperature" value={{sample.water_temperature}}></div>
+        <div class="editor-label">Water level</div><div class="editor-field"><input type="number" name="water_level" value={{sample.water_level}}></div>
+        <div class="editor-label">Sample type</div>
+        <div class="editor-field">
+            <select name="sample_type_id">
+                {% for sample_type in sample_types %}
+                    <option value="{{ sample_type.id }}" {% if sample.sample_type_id == sample_type.id %}selected{% endif %}>{{ sample_type.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</form>
+{% endblock %}
+{% block js %}
+    <script src="{{ url_for('static', filename='jquery.serializeObject.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            bindSaveButton();
+        });
+
+        function bindSaveButton() {
+            $('#save-button').on('click', function(event) {
+                var formToSend = $('#sample-form');
+                var saveUrl = window.location
+                $.ajax({
+                    url: saveUrl,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify(formToSend.serializeObject())
+                })
+                .done(function(data) {
+                    if (data['result']) {
+                        window.location = "{{ url_for('day_sample_handlers.day_sample_view', day_sample_id = day_sample.id) }}";
+                    }
+                });
+            });
+        }
+    </script>
+{% endblock js %}

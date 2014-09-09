@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Day sample: {{ day_sample.date }}</h1>
+<div>
+    <div>Samples</div>
+    <div><a href="{{ url_for('sample_handlers.sample_add', day_sample_id = day_sample.id) }}">Add sample</a></div>
+</div>
+<div>
+    <table>
+        {% for sample in day_sample.samples %}
+        <tr>
+            <td>{{ sample.date }}</td>
+            <td>{{ sample.air_temperature }}</td>
+            <td>{{ sample.water_temperature }}</td>
+            <td>{{ sample.water_level }}</td>
+            <td>{{ sample.sample_type.name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock content %}

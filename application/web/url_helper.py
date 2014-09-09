@@ -6,6 +6,7 @@ EDIT = 'edit'
 DELETE = 'delete'
 
 DAY_SAMPLE_URL = '/{0}/day_samples'.format(API_VERSION)
+SAMPLE_URL = '/{0}/samples'.format(API_VERSION)
 
 
 class UrlHelper():

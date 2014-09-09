@@ -62,7 +62,7 @@ def get_items(type):
     session = Session()
     items = None
     try:
-        items = session.query(type).filter_by(deleted=False)
+        items = session.query(type)
     except exc.SQLAlchemyError:
         items = None
 
